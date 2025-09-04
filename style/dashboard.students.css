@@ -1,0 +1,485 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: 'Arial', sans-serif;
+}
+
+:root {
+   --primary-color: #4a90e2;
+   --secondary-color: #f5f6fa;
+   --text-color: #2c3e50;
+   --success-color: #2ecc71;
+   --danger-color: #e74c3c;
+   --header-height: 60px;
+   --sidebar-width: 250px;
+}
+
+body {
+   background-color: var(--secondary-color);
+   color: var(--text-color);
+   min-height: 100vh;
+   overflow-x: hidden;
+   display: flex;
+}
+
+.main-wrapper {
+   flex: 1;
+   margin-left: var(--sidebar-width);
+   padding: 20px;
+   max-width: 100%;
+}
+
+.header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   background-color: white;
+   padding: 20px;
+   border-radius: 10px;
+   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+   margin-bottom: 20px;
+}
+
+.search-container {
+   display: flex;
+   align-items: center;
+   background: var(--secondary-color);
+   border-radius: 25px;
+   padding: 5px 15px;
+   width: 300px;
+}
+
+.search-container i {
+   color: #666;
+   margin-right: 10px;
+}
+
+.search-bar {
+   border: none;
+   background: none;
+   outline: none;
+   padding: 8px;
+   width: 100%;
+}
+
+.add-student-btn {
+   padding: 10px 20px;
+   background-color: var(--success-color);
+   color: white;
+   border: none;
+   border-radius: 25px;
+   cursor: pointer;
+   text-decoration: none;
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   transition: background-color 0.3s;
+   white-space: nowrap;
+}
+
+.add-student-btn:hover {
+   background-color: #27ae60;
+}
+
+.main-content {
+   background: white;
+   padding: 20px;
+   border-radius: 10px;
+   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+   overflow-x: auto;
+   -webkit-overflow-scrolling: touch;
+}
+
+.content-header {
+   margin-bottom: 20px;
+   text-align: center;
+}
+
+table {
+   width: 100%;
+   border-collapse: collapse;
+   min-width: 800px;
+}
+
+th, td {
+   padding: 15px;
+   text-align: left;
+   border-bottom: 1px solid #eee;
+}
+
+th {
+   background-color: var(--primary-color);
+   color: white;
+   font-weight: 500;
+   white-space: nowrap;
+}
+
+td {
+   white-space: nowrap;
+}
+
+.main-content::-webkit-scrollbar {
+   height: 8px;
+   width: 8px;
+}
+
+.main-content::-webkit-scrollbar-track {
+   background: #f1f1f1;
+   border-radius: 4px;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+   background: var(--primary-color);
+   border-radius: 4px;
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+   background: #357abd;
+}
+
+.action-btn {
+   padding: 6px 12px;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   color: white;
+   margin: 0 2px;
+   display: inline-flex;
+   align-items: center;
+   gap: 5px;
+   font-size: 0.9em;
+   transition: background-color 0.3s;
+}
+
+.edit-btn {
+   background-color: var(--primary-color);
+}
+
+.edit-btn:hover {
+   background-color: #357abd;
+}
+
+.delete-btn {
+   background-color: var(--danger-color);
+}
+
+.delete-btn:hover {
+   background-color: #c0392b;
+}
+
+.courses-btn {
+   background-color: var(--success-color);
+}
+
+.courses-btn:hover {
+   background-color: #27ae60;
+}
+
+.modal {
+   display: none;
+   position: fixed;
+   z-index: 9999;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0,0,0,0.5);
+   pointer-events: auto;
+   user-select: none;
+}
+
+.modal-content {
+   background-color: white;
+   margin: 50px auto;
+   padding: 20px;
+   border-radius: 10px;
+   width: 80%;
+   max-width: 500px;
+   position: relative;
+   animation: modalSlideIn 0.3s ease;
+}
+
+.close {
+   position: absolute;
+   right: 20px;
+   top: 20px;
+   width: 32px;
+   height: 32px;
+   border-radius: 50%;
+   background: #f1f1f1;
+   border: none;
+   cursor: pointer;
+   outline: none;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 20px;
+   color: #666;
+   transition: all 0.3s ease;
+   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.close:hover {
+   background: #e74c3c;
+   color: white;
+   transform: rotate(180deg);
+   box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+.close:active {
+   transform: rotate(180deg) scale(0.95);
+}
+
+.delete-confirm-box {
+   text-align: center;
+   padding: 25px;
+}
+
+.delete-icon {
+   color: var(--danger-color);
+   font-size: 40px;
+   margin-bottom: 15px;
+}
+
+.delete-actions {
+   margin-top: 25px;
+   display: flex;
+   justify-content: center;
+   gap: 10px;
+}
+
+.cancel-btn, .confirm-delete-btn {
+   padding: 10px 25px;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   font-weight: 500;
+   transition: all 0.3s ease;
+}
+
+.cancel-btn {
+   background: #f5f6fa;
+   color: #2c3e50;
+}
+
+.confirm-delete-btn {
+   background: var(--danger-color);
+   color: white;
+}
+
+.form-group {
+   margin-bottom: 15px;
+}
+
+.form-group label {
+   display: block;
+   margin-bottom: 5px;
+   font-weight: 500;
+   color: var(--text-color);
+}
+
+.form-group input {
+   width: 100%;
+   padding: 10px;
+   border: 1px solid #ddd;
+   border-radius: 5px;
+   font-size: 14px;
+}
+
+.btn-save {
+   background-color: var(--primary-color);
+   color: white;
+   padding: 12px 20px;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   width: 100%;
+   margin-top: 20px;
+   font-size: 16px;
+}
+
+.alert {
+   position: fixed;
+   top: 20px;
+   right: 20px;
+   padding: 15px 25px;
+   border-radius: 5px;
+   color: white;
+   z-index: 1004;
+   animation: slideInOut 3s ease forwards;
+}
+
+.alert-success {
+   background-color: var(--success-color);
+}
+
+.alert-danger {
+   background-color: var(--danger-color);
+}
+
+
+
+@keyframes slideInOut {
+   0% { 
+      transform: translateX(100%);
+      opacity: 0;
+   }
+   15% {
+      transform: translateX(0);
+      opacity: 1;
+   }
+   85% {
+      transform: translateX(0);
+      opacity: 1;
+   }
+   100% {
+      transform: translateX(100%);
+      opacity: 0;
+   }
+}
+
+.course-item {
+   background: #f8f9fa;
+   border-left: 4px solid var(--primary-color);
+   margin-bottom: 15px;
+   padding: 15px;
+   border-radius: 8px;
+   transition: all 0.3s ease;
+   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+   user-select: none;
+}
+
+.course-item:hover {
+   transform: translateX(5px);
+   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.course-item h3 {
+   color: var(--text-color);
+   font-size: 18px;
+   margin-bottom: 8px;
+   font-weight: 600;
+}
+
+.course-item .instructor {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   color: #666;
+   font-size: 14px;
+}
+
+.course-item .instructor i {
+   all: unset;
+   display: none;
+}
+
+.courses-modal-header {
+   border-bottom: 1px solid #eee;
+   padding-bottom: 15px;
+   margin-bottom: 20px;
+}
+
+.courses-modal-header h2 {
+   color: var(--text-color);
+   font-size: 24px;
+   font-weight: 600;
+}
+
+#coursesList {
+   max-height: 400px;
+   overflow-y: auto;
+   padding-right: 10px;
+}
+
+#coursesList::-webkit-scrollbar {
+   width: 6px;
+}
+
+#coursesList::-webkit-scrollbar-track {
+   background: #f1f1f1;
+   border-radius: 3px;
+}
+
+#coursesList::-webkit-scrollbar-thumb {
+   background: var(--primary-color);
+   border-radius: 3px;
+}
+
+#coursesList::-webkit-scrollbar-thumb:hover {
+   background: #357abd;
+}
+
+@media (max-width: 768px) {
+   .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: auto;
+      padding: 10px;
+      width: 100%;
+   }
+
+   .sidebar-menu {
+      display: flex;
+      margin: 0;
+      justify-content: space-around;
+   }
+
+   .sidebar-menu a {
+      flex-direction: column;
+      text-align: center;
+      padding: 8px;
+   }
+
+   .sidebar-menu i {
+      margin: 0 0 5px 0;
+      font-size: 1.2em;
+   }
+
+   .sidebar-menu span {
+      font-size: 0.8em;
+   }
+
+   .main-wrapper {
+      margin-left: 0;
+      margin-top: 80px;
+      padding: 10px;
+   }
+
+   .header {
+      flex-direction: column;
+      gap: 10px;
+   }
+
+   .search-container {
+      width: 100%;
+   }
+
+   .add-student-btn {
+      width: 100%;
+      justify-content: center;
+   }
+
+   .action-btn {
+      padding: 5px 10px;
+      font-size: 0.8em;
+   }
+
+   .modal-content {
+      width: 95%;
+      margin: 10% auto;
+   }
+}
+
+@keyframes modalSlideIn {
+   from { transform: translateY(-100px); opacity: 0; }
+   to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideIn {
+   from { transform: translateX(100%); opacity: 0; }
+   to { transform: translateX(0); opacity: 1; }
+}
